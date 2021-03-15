@@ -1,0 +1,6 @@
+rootProject.name='KotlinJetpackCoroutineMVVM'
+include ':app'
+include ':network'
+include ':common'
+include ':login'
+include ':main'
