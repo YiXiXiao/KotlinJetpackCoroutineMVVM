@@ -15,5 +15,6 @@ class SplashActivity : AppCompatActivity() {
         tv_start_main.setOnClickListener {
             ARouter.getInstance().build("/main/mainActivity").navigation()
         }
+
     }
 }
