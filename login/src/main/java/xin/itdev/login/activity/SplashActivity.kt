@@ -16,5 +16,6 @@ class SplashActivity : AppCompatActivity() {
             ARouter.getInstance().build("/main/mainActivity").navigation()
         }
 
+
     }
 }
