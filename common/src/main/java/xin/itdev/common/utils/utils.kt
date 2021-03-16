@@ -1,5 +1,7 @@
 package xin.itdev.common.utils
 
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import com.orhanobut.logger.Logger
 import xin.itdev.common.BaseApp
@@ -39,6 +41,10 @@ fun String.showInfoToast(){
 
 fun String.showFailToast(){
     ToastUtils.showFailToast(BaseApp.instance, this)
+}
+
+fun Int.delay(action: () -> Unit) {
+    Handler(Looper.getMainLooper()).postDelayed({ action.invoke() }, this.toLong())
 }
 
 

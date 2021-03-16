@@ -24,4 +24,16 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="horizontal_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/color_f2f2f2</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <style name="vertical_divider">
+        <item name="android:layout_width">1px</item>
+        <item name="android:background">@color/color_f2f2f2</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>

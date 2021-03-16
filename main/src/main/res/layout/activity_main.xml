@@ -1,18 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="xin.itdev.main.activity.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="layout"
+            type="xin.itdev.main.viewmodel.MainViewModel" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        tools:context="xin.itdev.main.activity.MainActivity">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/llNav"/>
+
+        <View
+            style="@style/horizontal_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPage"
+            app:layout_constraintBottom_toTopOf="@id/llNav"/>
+
+        <RadioGroup
+            android:id="@+id/llNav"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <RadioButton
+                android:id="@+id/rb0"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:onClick="@{()->layout.onHomeClick()}"
+                android:drawableTop="@drawable/nav_bottom_selector_home"
+                android:drawablePadding="2dp"
+                android:text="首页"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="10sp" />
+
+
+            <RadioButton
+                android:id="@+id/rb1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="@{()->layout.onQaClick()}"
+                android:button="@null"
+                android:drawablePadding="2dp"
+                android:drawableTop="@drawable/nav_bottom_selector_qa"
+                android:text="问答"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="10sp" />
+
+
+            <RadioButton
+                android:id="@+id/rb2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:onClick="@{()->layout.onFindClick()}"
+                android:drawableTop="@drawable/nav_bottom_selector_find"
+                android:drawablePadding="2dp"
+                android:text="发现"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="10sp" />
+
+            <RadioButton
+                android:id="@+id/rb3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:button="@null"
+                android:onClick="@{()->layout.onMeClick()}"
+                android:drawableTop="@drawable/nav_bottom_selector_me"
+                android:drawablePadding="2dp"
+                android:text="我的"
+                android:textColor="@color/nav_bottom_color"
+                android:textSize="10sp" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -65,5 +65,4 @@ dependencies {
 
     api project(":common")
     api project(":network")
-    api project(":home")
 }
