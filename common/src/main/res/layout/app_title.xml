@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="xin.itdev.common.viewmodel.TitleViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@{title.background}"
+        android:layout_height="50dp"
+        tools:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@{title.leftText}"
+            android:layout_height="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/color_333333"
+            android:drawableStart="@{title.leftDrawable}"
+            android:onClick="@{()->title.leftAction.invoke()}"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:drawableStart="@drawable/back_icon"
+            tools:text="" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="18sp"
+            android:text="@{title.mTitle}"
+            android:textColor="@color/color_333333"
+            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:text="@{title.rightText}"
+            android:onClick="@{()->title.rightAction.invoke()}"
+            android:layout_marginEnd="12dp"
+            android:drawableEnd="@{title.mRightDrawable}"
+            android:textColor="@color/color_333333"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

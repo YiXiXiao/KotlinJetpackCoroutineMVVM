@@ -6,10 +6,10 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_main.*
-import xin.itdev.common.ui.BaseVMRepositoryActivity
+import xin.itdev.base.ui.BaseVMRepositoryActivity
 import xin.itdev.main.R
 import xin.itdev.main.adapter.MainVPAdapter
-import com.xyx.home.fragment.HomeFragment
+import xin.itdev.home.fragment.HomeFragment
 import xin.itdev.main.viewmodel.MainViewModel
 
 /**
@@ -62,6 +62,7 @@ class MainActivity : BaseVMRepositoryActivity<MainViewModel>(R.layout.activity_m
         mFragments.add(HomeFragment())
 
         viewPage.adapter = MainVPAdapter(mFragments, supportFragmentManager, lifecycle)
+        //是否开启联动
         viewPage.isUserInputEnabled = true
         viewPage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

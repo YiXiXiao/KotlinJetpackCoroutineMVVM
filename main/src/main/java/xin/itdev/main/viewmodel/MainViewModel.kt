@@ -2,7 +2,7 @@ package xin.itdev.main.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import xin.itdev.common.vm.BaseRepositoryViewModel
+import xin.itdev.base.vm.BaseRepositoryViewModel
 import xin.itdev.main.repository.MainRepository
 
 class MainViewModel(app:Application) : BaseRepositoryViewModel<MainRepository>(app, MainRepository()) {

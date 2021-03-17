@@ -2,10 +2,10 @@ package xin.itdev.network
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import xin.itdev.common.bean.LoadBean
-import xin.itdev.common.utils.log
-import xin.itdev.common.utils.showFailToast
-import xin.itdev.common.vm.BaseViewModel
+import xin.itdev.base.bean.LoadBean
+import xin.itdev.base.utils.log
+import xin.itdev.base.utils.showFailToast
+import xin.itdev.base.vm.BaseViewModel
 
 fun BaseViewModel.launch(showDialog: Boolean = true, finish: (suspend () -> Unit)? = null, error: (suspend () -> Unit)? = null, success: suspend () -> Unit) {
     viewModelScope.launch {

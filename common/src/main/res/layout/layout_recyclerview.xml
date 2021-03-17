@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="rv"
+            type="xin.itdev.common.viewmodel.RecyclerViewVM" />
+
+    </data>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:enabled="@{rv.mRefreshEnable}"
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{rv.mOnRefresh}"
+        app:refreshing="@{rv.mIsRefreshing}">
+
+        <androidx.recyclerview.widget.RecyclerView
+            setLoadMoreListener="@{rv.mOnLoadMoreListener}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:addOnScrollListener="@{rv.mOnScrollListener}"
+            app:setAdapter="@{rv.mAdapterObservable}"
+            app:setLayoutManager="@{rv.mLayoutManager}">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+</layout>

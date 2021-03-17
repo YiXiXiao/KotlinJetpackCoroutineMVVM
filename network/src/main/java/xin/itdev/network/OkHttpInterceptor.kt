@@ -6,7 +6,7 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.ResponseBody
 import okio.Buffer
-import xin.itdev.common.utils.log
+import xin.itdev.base.utils.log
 import java.nio.charset.Charset
 import kotlin.text.Charsets.UTF_8
 

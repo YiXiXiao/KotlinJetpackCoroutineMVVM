@@ -63,6 +63,6 @@ dependencies {
     //每个业务组件都需要添加 引入ARouter 的 Annotation处理器
     kapt 'com.alibaba:arouter-compiler:1.5.1'
 
-    api project(":common")
+    api project(":base")
     api project(":network")
 }

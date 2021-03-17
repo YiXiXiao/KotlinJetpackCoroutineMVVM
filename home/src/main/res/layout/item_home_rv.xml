@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="xin.itdev.home.viewmodel.ItemHomeViewModel" />
+
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:onClick="@{()->item.onItemClick()}"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorBackground"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:gravity="center_vertical|start"
+                android:layout_width="0dp"
+                android:textColor="@color/colorGray3"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@{item.mTitle}"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Test" />
+
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:text="@{item.mAuthor}"
+                android:visibility="@{TextUtils.isEmpty(item.MAuthor) ? View.GONE : View.VISIBLE}"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="测试" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorGray6"
+                android:textSize="12sp"
+                android:visibility="@{TextUtils.isEmpty(item.mCategory) ? View.INVISIBLE : View.VISIBLE}"
+                android:text="@{item.mCategory}"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="分类" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,6 +1,6 @@
 package xin.itdev.main.repository
 
-import xin.itdev.common.repository.BaseRepository
+import xin.itdev.base.repository.BaseRepository
 import xin.itdev.main.api.MainService
 import xin.itdev.main.common.Contanst
 import xin.itdev.network.RetrofitUtil

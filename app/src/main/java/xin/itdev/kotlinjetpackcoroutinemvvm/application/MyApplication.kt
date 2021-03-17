@@ -1,6 +1,6 @@
 package xin.itdev.kotlinjetpackcoroutinemvvm.application
 
-import xin.itdev.common.BaseApp
+import xin.itdev.base.BaseApp
 
 class MyApplication : BaseApp() {
 

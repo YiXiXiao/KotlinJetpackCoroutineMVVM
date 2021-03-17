@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    api project(":common")
+    api project(":base")
 
     api 'com.squareup.okhttp3:okhttp:4.8.1'
     api 'com.squareup.retrofit2:retrofit:2.9.0'
