@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="banner"
-            type="xin.itdev.home.viewmodel.HomeBannerViewModel" />
+            name="item"
+            type="xin.itdev.home.viewmodel.HomeBannerVM" />
 
     </data>
 
@@ -15,18 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.youth.banner.Banner
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:banner_indicator_normal_color="@color/colorWhite"
-            app:banner_indicator_selected_color="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:setBannerAdapter="@{banner.mAdapterObservable}"
-            app:setBannerClickListener="@{banner.mBannerClickListener}"
-            app:setBannerIndicator="@{banner.mIndicatorObservable}"
-            app:setBannerPageChangeListener="@{banner.mPageChangeListener}"/>
+        <include
+            layout="@layout/view_model_banner"
+            app:banner="@{item.mBannerVM}" />
 
     </FrameLayout>
 </layout>

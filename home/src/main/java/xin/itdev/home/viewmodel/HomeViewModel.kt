@@ -1,6 +1,7 @@
 package xin.itdev.home.viewmodel
 
 import android.app.Application
+import com.orhanobut.logger.Logger
 import xin.itdev.base.adapter.QuickMultiAdapter
 import xin.itdev.base.utils.showToast
 import xin.itdev.home.repository.HomeRepository
@@ -30,15 +31,20 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
     private val mBannerBeanList = arrayListOf<BannerBean>()
 
     private val mBannerAdapter = HomeBannerAdapter(mBannerBeanList)
-    private var mBannerViewModel = HomeBannerViewModel(getApplication()).apply {
+    private var mBannerViewModel = BannerViewModel(getApplication()).apply {
         mAdapterObservable.set(mBannerAdapter)
+    }
+
+    private val mHomeBannerVM = HomeBannerVM(getApplication()).apply {
+        mBannerVM.set(mBannerViewModel)
     }
 
     //多Item数据
     private val mData = arrayListOf<BaseMultiItemViewModel>()
+    private val mTopArticleList = arrayListOf<ItemDatasBean>()
+    private val mItemArticleList = arrayListOf<ItemDatasBean>()
     //多ItemAdapter
     private val mAdapter = QuickMultiAdapter(mData).apply {
-//        addHeader()   //添加header头
         addType(R.layout.item_home_banner, ItemType.ITEM_HOME_BANNER)
         addType(R.layout.item_home_rv, ItemType.ITEM_HOME_RV)
     }
@@ -53,7 +59,6 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
         mOnRefresh = {
             mIsRefreshing.set(true)
 
-            mData.clear()
             mCurrPage = 0
             requestServer(HomePageState.REFRESH)
 
@@ -87,18 +92,18 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
         launch{
             if (state == HomePageState.INIT || state == HomePageState.REFRESH) {
                 //获取banner数据
-                mBannerBeanList.clear()
                 loadDataResponse(mRepo.getBannerList()){
+                    mBannerBeanList.clear()
                     this.data?.forEach {
                         mBannerBeanList.add(BannerBean(it.imagePath, it.title, it.url))
                     }
                 }
-                mData.add(mBannerViewModel)
 
                 //获取置顶数据
                 loadDataResponse(mRepo.getArticleTop()){
-                    this.data?.forEach {
-                        bindData(it)
+                    mTopArticleList.clear()
+                    if(this.data != null){
+                        mTopArticleList.addAll(this.data!!)
                     }
                 }
             }
@@ -107,10 +112,22 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
             loadDataResponse(mRepo.getArticleList(mCurrPage)){
                 this.data.apply {
                     mTotalPage =  this?.pageCount ?: 1
-                    this?.datas?.forEach {
-                        bindData(it)
+                    if(this?.datas != null){
+                        mItemArticleList.clear()
+                        mItemArticleList.addAll(this.datas!!)
                     }
                 }
+            }
+            if(state == HomePageState.INIT || state == HomePageState.REFRESH){
+                //添加banner
+                mData.clear()
+                mData.add(mHomeBannerVM)
+                mTopArticleList.forEach {
+                    bindData(it)
+                }
+            }
+            mItemArticleList.forEach {
+                bindData(it)
             }
             //刷新页面
             mAdapter.notifyDataSetChanged()
