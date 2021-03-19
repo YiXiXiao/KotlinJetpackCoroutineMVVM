@@ -2,6 +2,7 @@ package xin.itdev.home.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
+import com.alibaba.android.arouter.launcher.ARouter
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.indicator.Indicator
 import com.youth.banner.listener.OnBannerListener
@@ -25,8 +26,11 @@ class BannerViewModel(app: Application) : BaseViewModel(app){
     }
 
     var mBannerClickListener = OnBannerListener<BannerBean> { data, position ->
-        //TODO  banner 点击事件处理
-        "banner点击了".showInfoToast()
+        ARouter.getInstance().build("/common/webViewActivity")
+            .withString("title", data.content)
+            .withString("url", data.link)
+            .navigation()
+
     }
 
 }

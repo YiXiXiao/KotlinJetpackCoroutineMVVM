@@ -7,6 +7,7 @@ import xin.itdev.base.utils.showToast
 import xin.itdev.home.repository.HomeRepository
 import xin.itdev.base.vm.BaseRepositoryViewModel
 import xin.itdev.base.vm.rv.BaseMultiItemViewModel
+import xin.itdev.common.bean.PageState
 import xin.itdev.common.loadDataResponse
 import xin.itdev.common.viewmodel.RecyclerViewVM
 import xin.itdev.common.viewmodel.TitleViewModel
@@ -17,9 +18,6 @@ import xin.itdev.home.bean.ItemDatasBean
 import xin.itdev.home.common.ItemType
 import xin.itdev.network.launch
 
-enum class HomePageState {
-    INIT, REFRESH, LOAD_MORE
-}
 
 class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(app, HomeRepository()) {
 
@@ -60,14 +58,14 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
             mIsRefreshing.set(true)
 
             mCurrPage = 0
-            requestServer(HomePageState.REFRESH)
+            requestServer(PageState.REFRESH)
 
         }
 
         mOnLoadMoreListener = {
             mCurrPage++
             if (mCurrPage < mTotalPage) {
-                requestServer(HomePageState.LOAD_MORE)
+                requestServer(PageState.LOAD_MORE)
             } else {
                 "没有更多了".showToast()
             }
@@ -78,19 +76,19 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
     override fun onModelBind() {
         super.onModelBind()
 
-        requestServer(HomePageState.INIT)
+        requestServer(PageState.INIT)
 
     }
 
-    private fun hideRefreshLoading(state: HomePageState) {
-        if (state == HomePageState.REFRESH) {
+    private fun hideRefreshLoading(state: PageState) {
+        if (state == PageState.REFRESH) {
             rvVM.mIsRefreshing.set(false)
         }
     }
 
-    private fun requestServer(state: HomePageState) {
-        launch{
-            if (state == HomePageState.INIT || state == HomePageState.REFRESH) {
+    private fun requestServer(state: PageState) {
+        launch(!(state == PageState.INIT || state == PageState.REFRESH)){
+            if (state == PageState.INIT || state == PageState.REFRESH) {
                 //获取banner数据
                 loadDataResponse(mRepo.getBannerList()){
                     mBannerBeanList.clear()
@@ -118,7 +116,7 @@ class HomeViewModel(app:Application) : BaseRepositoryViewModel<HomeRepository>(a
                     }
                 }
             }
-            if(state == HomePageState.INIT || state == HomePageState.REFRESH){
+            if(state == PageState.INIT || state == PageState.REFRESH){
                 //添加banner
                 mData.clear()
                 mData.add(mHomeBannerVM)

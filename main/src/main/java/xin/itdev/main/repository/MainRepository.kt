@@ -8,6 +8,4 @@ import xin.itdev.network.RetrofitUtil
 class MainRepository : BaseRepository {
     val api by lazy { RetrofitUtil.create<MainService>(Contanst.MAIN_BASE_URL) }
 
-
-
 }

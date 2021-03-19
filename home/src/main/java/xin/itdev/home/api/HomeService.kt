@@ -4,7 +4,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import xin.itdev.home.bean.BannerDataBean
-import xin.itdev.home.bean.ObjectDataBean
+import xin.itdev.common.bean.ListDataBaseBean
+import xin.itdev.home.bean.ItemDatasBean
 import xin.itdev.home.bean.TopDataBean
 
 interface HomeService{
@@ -21,5 +22,5 @@ interface HomeService{
      *  2.知识体系下的文章  cid 分类的id，上述二级目录的id
      */
     @GET("/article/list/{page}/json")
-    suspend fun getArticleList(@Path("page") page: Int, @Query("cid") cid: Int? = null) : ObjectDataBean  //73为面试的cid)
+    suspend fun getArticleList(@Path("page") page: Int, @Query("cid") cid: Int? = null) : ListDataBaseBean<ItemDatasBean>  //73为面试的cid)
 }

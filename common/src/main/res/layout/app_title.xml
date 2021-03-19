@@ -69,5 +69,10 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="" />
 
+        <View
+            style="@style/horizontal_divider"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

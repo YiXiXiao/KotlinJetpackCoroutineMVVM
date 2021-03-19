@@ -1,4 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="xin.itdev.common" >
+    package="xin.itdev.common">
+
+    <application>
+        <activity android:name=".WebViewActivity"></activity>
+    </application>
 
 </manifest>

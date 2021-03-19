@@ -1,17 +1,16 @@
-package xin.itdev.home.bean
+package xin.itdev.common.bean
 
 import com.google.gson.annotations.SerializedName
-import xin.itdev.common.bean.BaseBean
 import java.io.Serializable
 
-data class ObjectDataBean(
+data class ListDataBaseBean<T>(
     @SerializedName(value = "data", alternate = ["shareArticles"])
-    var data: DataBean? = null
+    var data: DataBean<T>? = null
 ) : BaseBean() {
 
-    data class DataBean(
+    data class DataBean<T>(
         var curPage: Int?,
-        var datas: List<ItemDatasBean>?,
+        var datas: List<T>?,
         var offset: Int?,
         var over: Boolean?,
         var pageCount: Int?,

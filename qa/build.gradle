@@ -69,6 +69,5 @@ dependencies {
 
     api project(":base")
     api project(":network")
-    api project(":home")
-    api project(":qa")
+    api project(":common")
 }

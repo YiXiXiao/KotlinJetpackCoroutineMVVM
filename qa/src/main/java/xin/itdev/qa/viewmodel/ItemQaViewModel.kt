@@ -1,17 +1,18 @@
-package xin.itdev.home.viewmodel
+package xin.itdev.qa.viewmodel
 
 import android.app.Application
 import androidx.databinding.ObservableField
 import com.alibaba.android.arouter.launcher.ARouter
+import xin.itdev.base.utils.TimeUtils
 import xin.itdev.base.utils.showInfoToast
-import xin.itdev.base.vm.rv.BaseMultiItemViewModel
-import xin.itdev.home.bean.ItemDatasBean
-import xin.itdev.home.common.ItemType
+import xin.itdev.base.vm.rv.BaseItemViewModel
+import xin.itdev.qa.bean.ItemQaBean
 
-class ItemHomeViewModel(app: Application, private val bean: ItemDatasBean? = null) : BaseMultiItemViewModel(app) {
+class ItemQaViewModel(app:Application, private val bean : ItemQaBean?):BaseItemViewModel(app) {
     var mTitle = ObservableField("")
     var mAuthor = ObservableField("")
     var mCategory = ObservableField("")
+    var mTime = ObservableField("")
     var mLink: String? = ""
     var mId: Int? = null
     var mOriginId: Int = -1
@@ -25,32 +26,29 @@ class ItemHomeViewModel(app: Application, private val bean: ItemDatasBean? = nul
 
     }
 
-    fun bindData() {
-        setTitle()
-        setAuthor()
-        setCategory()
-        mId = bean?.id
-        mLink = bean?.link
-        mOriginId = bean?.originId ?: -1
-    }
+    /**
+     * 数据赋值
+     */
+    fun bindData(){
 
-    fun setTitle() {
         mTitle.set(bean?.title)
-    }
 
-    fun setAuthor() {
         if (!bean?.author.isNullOrEmpty()) {
             mAuthor.set("作者: ${bean?.author}")
         } else if (!bean?.shareUser.isNullOrEmpty()) {
             mAuthor.set("分享人: ${bean?.shareUser}")
         }
-    }
 
-    fun setCategory() {
         bean?.superChapterName?.let {
             mCategory.set("分类: $it")
         }
+
+        mTime.set(TimeUtils.getStringByFormat(bean?.publishTime!!, TimeUtils.dateFormatYMDHMS))
+
+        mId = bean?.id
+        mLink = bean?.link
+        mOriginId = bean?.originId ?: -1
+
     }
 
-    override val itemType = ItemType.ITEM_HOME_RV
 }

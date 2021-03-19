@@ -11,6 +11,7 @@ import xin.itdev.main.R
 import xin.itdev.main.adapter.MainVPAdapter
 import xin.itdev.home.fragment.HomeFragment
 import xin.itdev.main.viewmodel.MainViewModel
+import xin.itdev.qa.fragment.QaFragment
 
 /**
  * @author XYX
@@ -57,7 +58,7 @@ class MainActivity : BaseVMRepositoryActivity<MainViewModel>(R.layout.activity_m
             mFragments.clear()
         }
         mFragments.add(HomeFragment())
-        mFragments.add(HomeFragment())
+        mFragments.add(QaFragment())
         mFragments.add(HomeFragment())
         mFragments.add(HomeFragment())
 
