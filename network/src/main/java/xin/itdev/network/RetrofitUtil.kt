@@ -19,7 +19,7 @@ object RetrofitUtil {
     private const val WRITE_TIMEOUT = 60L
     private const val CONNECT_TIMEOUT = 30L
 
-    private var mRetrofit: Retrofit? = null
+    private var mRetrofitMap = HashMap<String, Retrofit>()
 
     private fun getClient(): OkHttpClient {
         return OkHttpClient.Builder()
@@ -33,14 +33,19 @@ object RetrofitUtil {
     }
 
     fun getRetrofit(baseUrl:String): Retrofit {
-        return mRetrofit ?: Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .validateEagerly(true)
-            .addConverterFactory(GsonConverterFactory.create(buildGson()))
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-            .client(getClient())
-            .build()
-            .also { mRetrofit = it }
+        return if(mRetrofitMap.containsKey(baseUrl)){
+            mRetrofitMap[baseUrl] as Retrofit
+        } else {
+            Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .validateEagerly(true)
+                .addConverterFactory(GsonConverterFactory.create(buildGson()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .client(getClient())
+                .build()
+                .also { mRetrofitMap[baseUrl] = it }
+            mRetrofitMap[baseUrl] as Retrofit
+        }
 
     }
 
